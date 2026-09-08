@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SmartLibrarySystem installer definition (WiX Toolset v4).
+  Build with Build-MSI.ps1 on a Windows machine.
+  The MSI installs the app and its config; the app creates its own
+  LocalDB database (LibraryDB) on first launch, so no DB setup is needed.
+-->
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+
+  <Package Name="SmartLibrarySystem"
+           Manufacturer="Technical Institute"
+           Version="1.0.0"
+           UpgradeCode="7ffaf39e-1a3d-4164-8672-33a0ee2f0ed8"
+           Scope="perMachine"
+           Languages="1033"
+           Description="SmartLibrarySystem - Library Management System for the Technical Institute">
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed."/>
+
+    <!-- Require .NET Framework 4.7.2 or later -->
+    <Property Id="NETFRAMEWORK47X">
+      <RegistrySearch Id="NetFw472"
+                      Root="HKLM"
+                      Key="SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full"
+                      Name="Release"
+                      Type="raw"/>
+    </Property>
+    <Condition Message="This application requires the .NET Framework 4.7.2 or later. Please install it first, then run the installer again.">
+      NETFRAMEWORK47X >= 461808
+    </Condition>
+
+    <!-- C:\Program Files (x86)\SmartLibrarySystem -->
+    <StandardDirectory Id="ProgramFiles6432Folder">
+      <Directory Id="INSTALLFOLDER" Name="SmartLibrarySystem"/>
+    </StandardDirectory>
+
+    <!-- Start menu folder -->
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Directory Id="ApplicationProgramsFolder" Name="SmartLibrarySystem"/>
+    </StandardDirectory>
+
+    <Feature Id="CompleteFeature" Title="SmartLibrarySystem" Level="1">
+      <ComponentGroupRef Id="ProductComponents"/>
+    </Feature>
+
+    <ComponentGroup Id="ProductComponents">
+
+      <!-- Main application files -->
+      <Component Directory="INSTALLFOLDER" Id="MainExeComponent" Guid="31b63705-2fd2-4c24-b8a8-e8e64115bf9e">
+        <File Id="AppExe" Source="SmartLibrarySystem.exe" KeyPath="yes"/>
+        <File Id="AppConfig" Source="SmartLibrarySystem.exe.config"/>
+        <File Id="AppXml" Source="SmartLibrarySystem.xml"/>
+      </Component>
+
+      <!-- Start menu shortcut + uninstall registry marker -->
+      <Component Directory="ApplicationProgramsFolder" Id="StartMenuShortcutComponent" Guid="e7f8f6a4-8a80-4002-a599-9aab844192ce">
+        <Shortcut Id="AppShortcut"
+                  Name="SmartLibrarySystem"
+                  Description="SmartLibrarySystem - Library Management System"
+                  Target="[INSTALLFOLDER]SmartLibrarySystem.exe"
+                  WorkingDirectory="INSTALLFOLDER"/>
+        <RegistryValue Root="HKCU"
+                       Key="Software\TechnicalInstitute\SmartLibrarySystem"
+                       Name="installed"
+                       Type="integer"
+                       Value="1"
+                       KeyPath="yes"/>
+        <RemoveFolder Id="RemoveApplicationProgramsFolder" Directory="ApplicationProgramsFolder" On="uninstall"/>
+      </Component>
+
+    </ComponentGroup>
+  </Package>
+</Wix>

@@ -3,6 +3,10 @@ Imports System.Data
 
 Public Class BookManagementForm
 
+    Public Sub New()
+        InitializeComponent()
+    End Sub
+
     Private Sub BookManagementForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadAllBooks()
     End Sub
@@ -84,6 +88,10 @@ Public Class BookManagementForm
     End Sub
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+        Me.Close()
+    End Sub
+
+    Private Sub btnMainMenu_Click(sender As Object, e As EventArgs) Handles btnMainMenu.Click
         Me.Close()
     End Sub
 

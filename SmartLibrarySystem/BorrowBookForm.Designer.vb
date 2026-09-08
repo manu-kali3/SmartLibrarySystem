@@ -30,6 +30,7 @@ Partial Class BorrowBookForm
         Me.btnBorrow = New System.Windows.Forms.Button()
         Me.btnRefresh = New System.Windows.Forms.Button()
         Me.btnClose = New System.Windows.Forms.Button()
+        Me.btnMainMenu = New System.Windows.Forms.Button()
         Me.lblBooksHint = New System.Windows.Forms.Label()
         Me.lblHeaderCurrent = New System.Windows.Forms.Label()
         Me.lblHeaderReturn = New System.Windows.Forms.Label()
@@ -194,6 +195,16 @@ Partial Class BorrowBookForm
         Me.btnClose.Text = "Close"
         Me.btnClose.UseVisualStyleBackColor = True
         '
+        'btnMainMenu
+        '
+        Me.btnMainMenu.Font = New System.Drawing.Font("Segoe UI", 12.0!)
+        Me.btnMainMenu.Location = New System.Drawing.Point(570, 390)
+        Me.btnMainMenu.Name = "btnMainMenu"
+        Me.btnMainMenu.Size = New System.Drawing.Size(150, 45)
+        Me.btnMainMenu.TabIndex = 17
+        Me.btnMainMenu.Text = "Main Menu"
+        Me.btnMainMenu.UseVisualStyleBackColor = True
+        '
         'lblBooksHint
         '
         Me.lblBooksHint.AutoSize = True
@@ -210,6 +221,7 @@ Partial Class BorrowBookForm
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(740, 470)
         Me.Controls.Add(Me.lblBooksHint)
+        Me.Controls.Add(Me.btnMainMenu)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.btnRefresh)
         Me.Controls.Add(Me.btnBorrow)
@@ -252,5 +264,6 @@ Partial Class BorrowBookForm
     Friend WithEvents btnBorrow As System.Windows.Forms.Button
     Friend WithEvents btnRefresh As System.Windows.Forms.Button
     Friend WithEvents btnClose As System.Windows.Forms.Button
+    Friend WithEvents btnMainMenu As System.Windows.Forms.Button
     Friend WithEvents lblBooksHint As System.Windows.Forms.Label
 End Class

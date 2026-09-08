@@ -37,3 +37,7 @@ Thumbs.db
 
 ## SQL / local settings
 appsettings.Local.json
+
+## Installer output
+SmartLibrarySystem.msi
+SmartLibrarySystem/Installer/tools/

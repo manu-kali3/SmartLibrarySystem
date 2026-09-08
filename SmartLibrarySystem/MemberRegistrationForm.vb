@@ -4,6 +4,10 @@ Imports SmartLibrarySystem.Models
 
 Public Class MemberRegistrationForm
 
+    Public Sub New()
+        InitializeComponent()
+    End Sub
+
     Private Sub MemberRegistrationForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadMembers()
     End Sub
@@ -59,6 +63,10 @@ Public Class MemberRegistrationForm
     End Sub
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+        Me.Close()
+    End Sub
+
+    Private Sub btnMainMenu_Click(sender As Object, e As EventArgs) Handles btnMainMenu.Click
         Me.Close()
     End Sub
 

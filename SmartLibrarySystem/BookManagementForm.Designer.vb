@@ -30,6 +30,7 @@ Partial Class BookManagementForm
         Me.btnViewAvailable = New System.Windows.Forms.Button()
         Me.btnRefresh = New System.Windows.Forms.Button()
         Me.btnClose = New System.Windows.Forms.Button()
+        Me.btnMainMenu = New System.Windows.Forms.Button()
         Me.dgvBooks = New System.Windows.Forms.DataGridView()
         Me.lblCount = New System.Windows.Forms.Label()
         CType(Me.dgvBooks, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -154,6 +155,16 @@ Partial Class BookManagementForm
         Me.btnClose.Text = "Close"
         Me.btnClose.UseVisualStyleBackColor = True
         '
+        'btnMainMenu
+        '
+        Me.btnMainMenu.Font = New System.Drawing.Font("Segoe UI", 11.0!)
+        Me.btnMainMenu.Location = New System.Drawing.Point(435, 300)
+        Me.btnMainMenu.Name = "btnMainMenu"
+        Me.btnMainMenu.Size = New System.Drawing.Size(170, 40)
+        Me.btnMainMenu.TabIndex = 15
+        Me.btnMainMenu.Text = "Main Menu"
+        Me.btnMainMenu.UseVisualStyleBackColor = True
+        '
         'dgvBooks
         '
         Me.dgvBooks.AllowUserToAddRows = False
@@ -185,6 +196,7 @@ Partial Class BookManagementForm
         Me.ClientSize = New System.Drawing.Size(784, 661)
         Me.Controls.Add(Me.lblCount)
         Me.Controls.Add(Me.dgvBooks)
+        Me.Controls.Add(Me.btnMainMenu)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.btnRefresh)
         Me.Controls.Add(Me.btnViewAvailable)
@@ -222,6 +234,7 @@ Partial Class BookManagementForm
     Friend WithEvents btnViewAvailable As System.Windows.Forms.Button
     Friend WithEvents btnRefresh As System.Windows.Forms.Button
     Friend WithEvents btnClose As System.Windows.Forms.Button
+    Friend WithEvents btnMainMenu As System.Windows.Forms.Button
     Friend WithEvents dgvBooks As System.Windows.Forms.DataGridView
     Friend WithEvents lblCount As System.Windows.Forms.Label
 End Class

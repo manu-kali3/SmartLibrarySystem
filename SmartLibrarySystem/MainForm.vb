@@ -2,10 +2,31 @@ Imports System.Windows.Forms
 
 Public Class MainForm
 
+    Public Sub New()
+        InitializeComponent()
+    End Sub
+
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lblWelcome.Text = "Welcome to SmartLibrarySystem"
         lblSubTitle.Text = "Technical Institute - Library Management System"
-        lblServerInfo.Text = "Database: LibraryDB  |  Server: " & DatabaseHelper.GetConnectionString()
+
+        Try
+            ' LocalDB bootstrap: create LibraryDB, tables and seed data on first launch.
+            DatabaseHelper.InitializeDatabase()
+            lblServerInfo.Text = "Database: LibraryDB (LocalDB)  |  Status: Ready"
+            lblServerInfo.ForeColor = System.Drawing.Color.DarkGreen
+        Catch ex As Exception
+            lblServerInfo.Text = "Database not available - check that SQL Server LocalDB is installed."
+            lblServerInfo.ForeColor = System.Drawing.Color.Red
+            MessageBox.Show(
+                "Could not connect to the local database (LibraryDB) and start the application:" & vbCrLf & vbCrLf &
+                ex.Message & vbCrLf & vbCrLf &
+                "This app uses SQL Server Express LocalDB, which is installed with Visual Studio 2019 " &
+                "(.NET desktop development workload)." & vbCrLf &
+                "If LocalDB is missing, install it from: " & vbCrLf &
+                "https://learn.microsoft.com/sql/database-engine/configure-windows/sql-server-express-localdb",
+                "LocalDB Required", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
     Private Sub btnBooks_Click(sender As Object, e As EventArgs) Handles btnBooks.Click

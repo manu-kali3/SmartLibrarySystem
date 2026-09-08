@@ -4,6 +4,10 @@ Imports SmartLibrarySystem.Models
 
 Public Class ReportsForm
 
+    Public Sub New()
+        InitializeComponent()
+    End Sub
+
     Private allBorrows As List(Of BorrowedBook) = New List(Of BorrowedBook)()
 
     Private Sub ReportsForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -129,6 +133,10 @@ Public Class ReportsForm
     End Sub
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+        Me.Close()
+    End Sub
+
+    Private Sub btnMainMenu_Click(sender As Object, e As EventArgs) Handles btnMainMenu.Click
         Me.Close()
     End Sub
 

@@ -3,6 +3,10 @@ Imports SmartLibrarySystem.Models
 
 Public Class ReturnBookForm
 
+    Public Sub New()
+        InitializeComponent()
+    End Sub
+
     Private currentBorrow As BorrowedBook = Nothing
 
     Private Sub ReturnBookForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -139,6 +143,10 @@ Public Class ReturnBookForm
     End Sub
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+        Me.Close()
+    End Sub
+
+    Private Sub btnMainMenu_Click(sender As Object, e As EventArgs) Handles btnMainMenu.Click
         Me.Close()
     End Sub
 

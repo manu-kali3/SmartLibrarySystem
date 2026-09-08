@@ -22,6 +22,7 @@ Partial Class ReportsForm
         Me.btnViewOverdue = New System.Windows.Forms.Button()
         Me.btnShowAll = New System.Windows.Forms.Button()
         Me.btnClose = New System.Windows.Forms.Button()
+        Me.btnMainMenu = New System.Windows.Forms.Button()
         Me.grpSummary = New System.Windows.Forms.GroupBox()
         Me.lblAvgPerStudent = New System.Windows.Forms.Label()
         Me.lblAvgDays = New System.Windows.Forms.Label()
@@ -155,6 +156,16 @@ Partial Class ReportsForm
         Me.btnClose.Text = "Close"
         Me.btnClose.UseVisualStyleBackColor = True
         '
+        'btnMainMenu
+        '
+        Me.btnMainMenu.Font = New System.Drawing.Font("Segoe UI", 11.0!)
+        Me.btnMainMenu.Location = New System.Drawing.Point(400, 455)
+        Me.btnMainMenu.Name = "btnMainMenu"
+        Me.btnMainMenu.Size = New System.Drawing.Size(160, 40)
+        Me.btnMainMenu.TabIndex = 7
+        Me.btnMainMenu.Text = "Main Menu"
+        Me.btnMainMenu.UseVisualStyleBackColor = True
+        '
         'txtReport
         '
         Me.txtReport.Font = New System.Drawing.Font("Consolas", 9.0!)
@@ -174,6 +185,7 @@ Partial Class ReportsForm
         Me.ClientSize = New System.Drawing.Size(984, 680)
         Me.Controls.Add(Me.txtReport)
         Me.Controls.Add(Me.btnClose)
+        Me.Controls.Add(Me.btnMainMenu)
         Me.Controls.Add(Me.btnShowAll)
         Me.Controls.Add(Me.btnViewOverdue)
         Me.Controls.Add(Me.grpSummary)
@@ -203,5 +215,6 @@ Partial Class ReportsForm
     Friend WithEvents btnViewOverdue As System.Windows.Forms.Button
     Friend WithEvents btnShowAll As System.Windows.Forms.Button
     Friend WithEvents btnClose As System.Windows.Forms.Button
+    Friend WithEvents btnMainMenu As System.Windows.Forms.Button
     Friend WithEvents txtReport As System.Windows.Forms.TextBox
 End Class

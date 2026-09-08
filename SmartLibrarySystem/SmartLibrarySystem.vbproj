@@ -104,6 +104,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="SQL\CreateDatabase.sql" />
+    <None Include="Installer\SmartLibrarySystem.wxs" />
+    <None Include="Installer\Build-MSI.ps1" />
     <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

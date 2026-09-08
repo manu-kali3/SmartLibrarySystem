@@ -24,6 +24,7 @@ Partial Class MemberRegistrationForm
         Me.txtStudentName = New System.Windows.Forms.TextBox()
         Me.btnRegister = New System.Windows.Forms.Button()
         Me.btnClose = New System.Windows.Forms.Button()
+        Me.btnMainMenu = New System.Windows.Forms.Button()
         Me.dgvMembers = New System.Windows.Forms.DataGridView()
         Me.lblCount = New System.Windows.Forms.Label()
         CType(Me.dgvMembers, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,6 +95,16 @@ Partial Class MemberRegistrationForm
         Me.btnClose.Text = "Close"
         Me.btnClose.UseVisualStyleBackColor = True
         '
+        'btnMainMenu
+        '
+        Me.btnMainMenu.Font = New System.Drawing.Font("Segoe UI", 11.0!)
+        Me.btnMainMenu.Location = New System.Drawing.Point(470, 195)
+        Me.btnMainMenu.Name = "btnMainMenu"
+        Me.btnMainMenu.Size = New System.Drawing.Size(180, 40)
+        Me.btnMainMenu.TabIndex = 9
+        Me.btnMainMenu.Text = "Main Menu"
+        Me.btnMainMenu.UseVisualStyleBackColor = True
+        '
         'dgvMembers
         '
         Me.dgvMembers.AllowUserToAddRows = False
@@ -125,6 +136,7 @@ Partial Class MemberRegistrationForm
         Me.ClientSize = New System.Drawing.Size(784, 561)
         Me.Controls.Add(Me.lblCount)
         Me.Controls.Add(Me.dgvMembers)
+        Me.Controls.Add(Me.btnMainMenu)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.btnRegister)
         Me.Controls.Add(Me.txtStudentName)
@@ -150,6 +162,7 @@ Partial Class MemberRegistrationForm
     Friend WithEvents txtStudentName As System.Windows.Forms.TextBox
     Friend WithEvents btnRegister As System.Windows.Forms.Button
     Friend WithEvents btnClose As System.Windows.Forms.Button
+    Friend WithEvents btnMainMenu As System.Windows.Forms.Button
     Friend WithEvents dgvMembers As System.Windows.Forms.DataGridView
     Friend WithEvents lblCount As System.Windows.Forms.Label
 End Class

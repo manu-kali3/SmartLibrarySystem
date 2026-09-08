@@ -47,6 +47,7 @@ Partial Class ReturnBookForm
         Me.lblStatus = New System.Windows.Forms.Label()
         Me.btnReturn = New System.Windows.Forms.Button()
         Me.btnClose = New System.Windows.Forms.Button()
+        Me.btnMainMenu = New System.Windows.Forms.Button()
         Me.grpDetails.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -358,11 +359,22 @@ Partial Class ReturnBookForm
         Me.btnClose.Text = "Close"
         Me.btnClose.UseVisualStyleBackColor = True
         '
+        'btnMainMenu
+        '
+        Me.btnMainMenu.Font = New System.Drawing.Font("Segoe UI", 12.0!)
+        Me.btnMainMenu.Location = New System.Drawing.Point(25, 530)
+        Me.btnMainMenu.Name = "btnMainMenu"
+        Me.btnMainMenu.Size = New System.Drawing.Size(140, 45)
+        Me.btnMainMenu.TabIndex = 8
+        Me.btnMainMenu.Text = "Main Menu"
+        Me.btnMainMenu.UseVisualStyleBackColor = True
+        '
         'ReturnBookForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(720, 600)
+        Me.Controls.Add(Me.btnMainMenu)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.btnReturn)
         Me.Controls.Add(Me.grpDetails)
@@ -413,4 +425,5 @@ Partial Class ReturnBookForm
     Friend WithEvents lblTimeBorrowedValue As System.Windows.Forms.Label
     Friend WithEvents btnReturn As System.Windows.Forms.Button
     Friend WithEvents btnClose As System.Windows.Forms.Button
+    Friend WithEvents btnMainMenu As System.Windows.Forms.Button
 End Class
