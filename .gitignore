@@ -1,0 +1,39 @@
+## Visual Studio / .NET build output
+bin/
+obj/
+*.user
+*.suo
+*.ncb
+*.aps
+*.userosc
+
+## Visual Studio cache / temp
+.vs/
+.vscode/
+*.tmp
+*.log
+
+## Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+
+## NuGet packages
+*.nupkg
+**/packages/*
+!**/packages/build/
+
+## Publish / generated
+publish/
+*.publish.xml
+ionide.unusedPackages.json
+
+## OS files
+.DS_Store
+Thumbs.db
+
+## SQL / local settings
+appsettings.Local.json
