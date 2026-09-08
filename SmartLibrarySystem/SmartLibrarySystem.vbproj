@@ -100,6 +100,12 @@
     <Compile Include="ReportsForm.Designer.vb">
       <DependentUpon>ReportsForm.vb</DependentUpon>
     </Compile>
+    <Compile Include="ReferenceDataForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReferenceDataForm.Designer.vb">
+      <DependentUpon>ReferenceDataForm.vb</DependentUpon>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
   </ItemGroup>
   <ItemGroup>

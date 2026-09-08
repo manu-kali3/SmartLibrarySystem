@@ -94,5 +94,72 @@ BEGIN
 END
 GO
 
-PRINT 'LibraryDB created successfully with Books, Members and BorrowedBooks tables.';
+-- ===================================================
+-- Table iv: Book Categories (reference data input)
+-- ===================================================
+IF OBJECT_ID(N'dbo.BookCategories', N'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.BookCategories
+    (
+        CategoryID      INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+        CategoryName    VARCHAR(100) NOT NULL UNIQUE
+    );
+END
+GO
+
+-- ===================================================
+-- Table v: Publishers (reference data input)
+-- ===================================================
+IF OBJECT_ID(N'dbo.Publishers', N'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.Publishers
+    (
+        PublisherID     INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+        PublisherName   VARCHAR(100) NOT NULL UNIQUE
+    );
+END
+GO
+
+-- ===================================================
+-- Table vi: Departments (reference data input)
+-- ===================================================
+IF OBJECT_ID(N'dbo.Departments', N'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.Departments
+    (
+        DepartmentID    INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+        DepartmentName  VARCHAR(100) NOT NULL UNIQUE
+    );
+END
+GO
+
+IF NOT EXISTS (SELECT 1 FROM dbo.BookCategories)
+BEGIN
+    INSERT INTO dbo.BookCategories (CategoryName) VALUES
+    ('Programming'),
+    ('Networking'),
+    ('Business Studies'),
+    ('General');
+END
+GO
+
+IF NOT EXISTS (SELECT 1 FROM dbo.Publishers)
+BEGIN
+    INSERT INTO dbo.Publishers (PublisherName) VALUES
+    ('Nairobi Press'),
+    ('TechBooks Ltd'),
+    ('University Publications');
+END
+GO
+
+IF NOT EXISTS (SELECT 1 FROM dbo.Departments)
+BEGIN
+    INSERT INTO dbo.Departments (DepartmentName) VALUES
+    ('Computer Science'),
+    ('Electrical Engineering'),
+    ('Business Studies');
+END
+GO
+
+PRINT 'LibraryDB created successfully with Books, Members, BorrowedBooks, BookCategories, Publishers and Departments tables.';
 GO

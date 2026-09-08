@@ -30,6 +30,7 @@ Partial Class MainForm
         Me.btnBorrow = New System.Windows.Forms.Button()
         Me.btnReturn = New System.Windows.Forms.Button()
         Me.btnReports = New System.Windows.Forms.Button()
+        Me.btnReferenceData = New System.Windows.Forms.Button()
         Me.btnExit = New System.Windows.Forms.Button()
         Me.lblServerInfo = New System.Windows.Forms.Label()
         Me.SuspendLayout()
@@ -119,13 +120,23 @@ Partial Class MainForm
         Me.btnReports.Text = "Borrowing Report"
         Me.btnReports.UseVisualStyleBackColor = True
         '
+        'btnReferenceData
+        '
+        Me.btnReferenceData.Font = New System.Drawing.Font("Segoe UI", 12.0!)
+        Me.btnReferenceData.Location = New System.Drawing.Point(150, 455)
+        Me.btnReferenceData.Name = "btnReferenceData"
+        Me.btnReferenceData.Size = New System.Drawing.Size(280, 50)
+        Me.btnReferenceData.TabIndex = 8
+        Me.btnReferenceData.Text = "Reference Data"
+        Me.btnReferenceData.UseVisualStyleBackColor = True
+        '
         'btnExit
         '
         Me.btnExit.Font = New System.Drawing.Font("Segoe UI", 12.0!)
-        Me.btnExit.Location = New System.Drawing.Point(150, 455)
+        Me.btnExit.Location = New System.Drawing.Point(150, 520)
         Me.btnExit.Name = "btnExit"
         Me.btnExit.Size = New System.Drawing.Size(280, 50)
-        Me.btnExit.TabIndex = 8
+        Me.btnExit.TabIndex = 9
         Me.btnExit.Text = "Exit"
         Me.btnExit.UseVisualStyleBackColor = True
         '
@@ -134,19 +145,20 @@ Partial Class MainForm
         Me.lblServerInfo.AutoSize = True
         Me.lblServerInfo.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.lblServerInfo.ForeColor = System.Drawing.Color.Gray
-        Me.lblServerInfo.Location = New System.Drawing.Point(40, 530)
+        Me.lblServerInfo.Location = New System.Drawing.Point(40, 595)
         Me.lblServerInfo.Name = "lblServerInfo"
         Me.lblServerInfo.Size = New System.Drawing.Size(500, 20)
-        Me.lblServerInfo.TabIndex = 9
+        Me.lblServerInfo.TabIndex = 10
         Me.lblServerInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(584, 575)
+        Me.ClientSize = New System.Drawing.Size(584, 640)
         Me.Controls.Add(Me.lblServerInfo)
         Me.Controls.Add(Me.btnExit)
+        Me.Controls.Add(Me.btnReferenceData)
         Me.Controls.Add(Me.btnReports)
         Me.Controls.Add(Me.btnReturn)
         Me.Controls.Add(Me.btnBorrow)
@@ -173,6 +185,7 @@ Partial Class MainForm
     Friend WithEvents btnBorrow As System.Windows.Forms.Button
     Friend WithEvents btnReturn As System.Windows.Forms.Button
     Friend WithEvents btnReports As System.Windows.Forms.Button
+    Friend WithEvents btnReferenceData As System.Windows.Forms.Button
     Friend WithEvents btnExit As System.Windows.Forms.Button
     Friend WithEvents lblServerInfo As System.Windows.Forms.Label
 End Class

@@ -59,6 +59,12 @@ Public Class MainForm
         End Using
     End Sub
 
+    Private Sub btnReferenceData_Click(sender As Object, e As EventArgs) Handles btnReferenceData.Click
+        Using frm As New ReferenceDataForm()
+            frm.ShowDialog()
+        End Using
+    End Sub
+
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
         Me.Close()
     End Sub

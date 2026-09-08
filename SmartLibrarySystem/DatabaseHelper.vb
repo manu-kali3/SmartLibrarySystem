@@ -66,7 +66,19 @@ Public Module DatabaseHelper
             "Returned BIT NOT NULL DEFAULT 0, " &
             "ActualReturnDate DATE NULL, " &
             "CONSTRAINT FK_BorrowedBooks_Members FOREIGN KEY (AdmissionNo) REFERENCES dbo.Members(AdmissionNo), " &
-            "CONSTRAINT FK_BorrowedBooks_Books FOREIGN KEY (BookID) REFERENCES dbo.Books(BookID));"
+            "CONSTRAINT FK_BorrowedBooks_Books FOREIGN KEY (BookID) REFERENCES dbo.Books(BookID)); " &
+            "IF OBJECT_ID(N'dbo.BookCategories', N'U') IS NULL " &
+            "CREATE TABLE dbo.BookCategories (" &
+            "CategoryID INT IDENTITY(1,1) NOT NULL PRIMARY KEY, " &
+            "CategoryName VARCHAR(100) NOT NULL UNIQUE); " &
+            "IF OBJECT_ID(N'dbo.Publishers', N'U') IS NULL " &
+            "CREATE TABLE dbo.Publishers (" &
+            "PublisherID INT IDENTITY(1,1) NOT NULL PRIMARY KEY, " &
+            "PublisherName VARCHAR(100) NOT NULL UNIQUE); " &
+            "IF OBJECT_ID(N'dbo.Departments', N'U') IS NULL " &
+            "CREATE TABLE dbo.Departments (" &
+            "DepartmentID INT IDENTITY(1,1) NOT NULL PRIMARY KEY, " &
+            "DepartmentName VARCHAR(100) NOT NULL UNIQUE);"
         ExecuteNonQuery(tablesSql, Nothing)
 
         ' 3. Seed the data (only when previously empty).
@@ -87,6 +99,28 @@ Public Module DatabaseHelper
             "('ADM-2024-001', 'James Mwangi'), " &
             "('ADM-2024-002', 'Faith Wairimu'), " &
             "('ADM-2024-003', 'Daniel Karanja'); " &
+            "END; " &
+            "IF NOT EXISTS (SELECT 1 FROM dbo.BookCategories) " &
+            "BEGIN " &
+            "INSERT INTO dbo.BookCategories (CategoryName) VALUES " &
+            "('Programming'), " &
+            "('Networking'), " &
+            "('Business Studies'), " &
+            "('General'); " &
+            "END; " &
+            "IF NOT EXISTS (SELECT 1 FROM dbo.Publishers) " &
+            "BEGIN " &
+            "INSERT INTO dbo.Publishers (PublisherName) VALUES " &
+            "('Nairobi Press'), " &
+            "('TechBooks Ltd'), " &
+            "('University Publications'); " &
+            "END; " &
+            "IF NOT EXISTS (SELECT 1 FROM dbo.Departments) " &
+            "BEGIN " &
+            "INSERT INTO dbo.Departments (DepartmentName) VALUES " &
+            "('Computer Science'), " &
+            "('Electrical Engineering'), " &
+            "('Business Studies'); " &
             "END;"
         ExecuteNonQuery(seedSql, Nothing)
     End Sub
@@ -385,6 +419,102 @@ Public Module DatabaseHelper
             bb.ActualReturnDate = Convert.ToDateTime(rdr("ActualReturnDate"))
         End If
         Return bb
+    End Function
+
+    ' ===================================================
+    ' Reference Data: Book Categories, Publishers, Departments
+    ' ===================================================
+    Public Function GetCategories() As DataTable
+        Using conn As SqlConnection = GetConnection()
+            Using cmd As New SqlCommand(
+                "SELECT CategoryID, CategoryName FROM BookCategories ORDER BY CategoryName", conn)
+                Using da As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable()
+                    da.Fill(dt)
+                    Return dt
+                End Using
+            End Using
+        End Using
+    End Function
+
+    Public Function AddCategory(categoryName As String) As Integer
+        Dim parameters As New List(Of SqlParameter) From {
+            New SqlParameter("@CategoryName", categoryName)
+        }
+        Return ExecuteNonQuery(
+            "INSERT INTO BookCategories (CategoryName) VALUES (@CategoryName)",
+            parameters)
+    End Function
+
+    Public Function DeleteCategory(categoryName As String) As Integer
+        Dim parameters As New List(Of SqlParameter) From {
+            New SqlParameter("@CategoryName", categoryName)
+        }
+        Return ExecuteNonQuery(
+            "DELETE FROM BookCategories WHERE CategoryName = @CategoryName",
+            parameters)
+    End Function
+
+    Public Function GetPublishers() As DataTable
+        Using conn As SqlConnection = GetConnection()
+            Using cmd As New SqlCommand(
+                "SELECT PublisherID, PublisherName FROM Publishers ORDER BY PublisherName", conn)
+                Using da As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable()
+                    da.Fill(dt)
+                    Return dt
+                End Using
+            End Using
+        End Using
+    End Function
+
+    Public Function AddPublisher(publisherName As String) As Integer
+        Dim parameters As New List(Of SqlParameter) From {
+            New SqlParameter("@PublisherName", publisherName)
+        }
+        Return ExecuteNonQuery(
+            "INSERT INTO Publishers (PublisherName) VALUES (@PublisherName)",
+            parameters)
+    End Function
+
+    Public Function DeletePublisher(publisherName As String) As Integer
+        Dim parameters As New List(Of SqlParameter) From {
+            New SqlParameter("@PublisherName", publisherName)
+        }
+        Return ExecuteNonQuery(
+            "DELETE FROM Publishers WHERE PublisherName = @PublisherName",
+            parameters)
+    End Function
+
+    Public Function GetDepartments() As DataTable
+        Using conn As SqlConnection = GetConnection()
+            Using cmd As New SqlCommand(
+                "SELECT DepartmentID, DepartmentName FROM Departments ORDER BY DepartmentName", conn)
+                Using da As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable()
+                    da.Fill(dt)
+                    Return dt
+                End Using
+            End Using
+        End Using
+    End Function
+
+    Public Function AddDepartment(departmentName As String) As Integer
+        Dim parameters As New List(Of SqlParameter) From {
+            New SqlParameter("@DepartmentName", departmentName)
+        }
+        Return ExecuteNonQuery(
+            "INSERT INTO Departments (DepartmentName) VALUES (@DepartmentName)",
+            parameters)
+    End Function
+
+    Public Function DeleteDepartment(departmentName As String) As Integer
+        Dim parameters As New List(Of SqlParameter) From {
+            New SqlParameter("@DepartmentName", departmentName)
+        }
+        Return ExecuteNonQuery(
+            "DELETE FROM Departments WHERE DepartmentName = @DepartmentName",
+            parameters)
     End Function
 
 End Module
