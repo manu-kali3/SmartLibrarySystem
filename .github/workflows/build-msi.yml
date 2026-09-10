@@ -53,7 +53,7 @@ jobs:
           make_latest: true
 
       - name: Push to brevan-softwares
-        if: ${{ success() && secrets.DEPLOY_TOKEN != '' }}
+        if: success()
         run: |
           git clone https://${{ secrets.DEPLOY_TOKEN }}@github.com/manu-kali3/brevan-softwares.git brevan-site
           cp SmartLibrarySystem.msi brevan-site/public/SmartLibrarySystem.msi
