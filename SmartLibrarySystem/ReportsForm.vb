@@ -80,7 +80,7 @@ Public Class ReportsForm
         lblAvgPerStudent.Text = "Average Borrowing Time Per Student:"
         txtReport.Text = lines.ToString()
         txtReport.AppendText("" & vbCrLf)
-        For Each grp In byStudent
+        For Each grp As IGrouping(Of String, BorrowedBook) In byStudent
             txtReport.AppendText("  " & grp.First().StudentName & " (" & grp.Key & "): " &
                                  LibraryLogic.CalculateAverageBorrowingTimePerStudent(grp.ToList()) & " days per borrow" & vbCrLf)
         Next

@@ -56,7 +56,7 @@ Public Module LibraryLogic
             Return 0.0
         End If
         Dim totalDays As Double = 0.0
-        For Each bb In list
+        For Each bb As BorrowedBook In list
             totalDays += If(bb.ActualReturnDate.HasValue,
                             (bb.ActualReturnDate.Value.Date - bb.BorrowDate.Date).TotalDays,
                             (Date.Today.Date - bb.BorrowDate.Date).TotalDays)
