@@ -11,9 +11,8 @@ permissions:
 jobs:
   build:
     runs-on: windows-latest
-
     steps:
-      - name: Checkout SmartLibrarySystem
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup MSBuild
@@ -27,32 +26,39 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Restore NuGet packages
+      - name: Restore
         run: nuget restore SmartLibrarySystem.sln
 
       - name: Build Release
         run: msbuild SmartLibrarySystem.sln /p:Configuration=Release /p:Platform="Any CPU"
 
       - name: Install WiX
-        run: dotnet tool install --tool-path SmartLibrarySystem/Installer/tools/wix wix --version 4.0.5
+        run: dotnet tool install --tool-path Installer/tools/wix wix --version 4.0.5
 
       - name: Build MSI
-        run: |
-          cd SmartLibrarySystem/Installer
-          .\tools\wix\wix.exe build SmartLibrarySystem.wxs -arch x86 -out ..\..\SmartLibrarySystem.msi -bindpath ..\bin\Release
+        run: cd Installer && .\tools\wix\wix.exe build SmartLibrarySystem.wxs -arch x86 -out ..\..\SmartLibrarySystem.msi -bindpath ..\bin\Release
 
-      - name: Upload MSI artifact
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: SmartLibrarySystem-installer
           path: SmartLibrarySystem.msi
 
-      - name: Push MSI to brevan-softwares/public
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.0
+          name: SmartLibrarySystem v1.0.0
+          files: SmartLibrarySystem.msi
+          make_latest: true
+
+      - name: Push to brevan-softwares
+        if: ${{ success() && secrets.DEPLOY_TOKEN != '' }}
         run: |
-          git clone https://${{ secrets.DEPLOY_TOKEN }}@github.com/manu-kali3/brevan-softwares.git brevan-softwares
-          cp SmartLibrarySystem.msi brevan-softwares/public/SmartLibrarySystem.msi
-          cd brevan-softwares
+          git clone https://${{ secrets.DEPLOY_TOKEN }}@github.com/manu-kali3/brevan-softwares.git brevan-site
+          cp SmartLibrarySystem.msi brevan-site/public/SmartLibrarySystem.msi
+          cd brevan-site
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add public/SmartLibrarySystem.msi
-          git diff --cached --quiet || (git commit -m "Update SmartLibrarySystem installer [skip ci]" && git push)
+          git diff --cached --quiet || (git commit -m "Update installer [skip ci]" && git push)
